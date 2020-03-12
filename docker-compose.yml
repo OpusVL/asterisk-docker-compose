@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  asterisk:
+    image: andrius/asterisk
+    environment:
+      ASTERISK_UID: ${ASTERISK_UID:-1000}
+      ASTERISK_GID: ${ASTERISK_GID:-1000}
+    volumes:
+      - "${PWD}/etc/asterisk/:/etc/asterisk:ro"
+      - "${PWD}/log:/var/log/asterisk"
+    ports:
+      - "5060:5060/tcp"
+      - "5060:5060/udp"
