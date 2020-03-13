@@ -1,15 +1,26 @@
-# Asterisk PBX
+# Asterisk 17 PBX
 
-Docker compose container set based on [`andrius/asterisk`](https://hub.docker.com/r/andrius/asterisk) tag `:latest` (Asterisk 15.x). Using Alpine Linux.
+Docker compose container set based on Asterisk 17 (git master).
 
-Only base Asterisk packages installed. If you want to add sounds, it's recommended to mount them as volume or data container, however you may install additional packages with `apk` command.
-
-## Environment
-
-Create a `.env` with the local users UID and GID.
-
-See [`.env.example`](.env.example)
+```shell
+# asterisk -r
+Asterisk GIT-master-a1dba820cf, Copyright (C) 1999 - 2018, Digium, Inc. and others.
+Created by Mark Spencer <markster@digium.com>
+Asterisk comes with ABSOLUTELY NO WARRANTY; type 'core show warranty' for details.
+This is free software, with components licensed under the GNU General Public
+License version 2 and other licenses; you are welcome to redistribute it under
+certain conditions. Type 'core show license' for details.
+=========================================================================
+Connected to Asterisk GIT-master-a1dba820cf currently running on 0891fa04dc83 (pid = 1)
+Core debug is still 6.
+```
 
 ## Configuration
 
-`./etc/asterisk` contains the original container configuration files.
+`./etc/asterisk` mounts into the container `/etc/asterisk` folder.
+
+HTTP is currently enabled on the default port 8088 with no prefix, eg.
+
+`http://localhost:8088/manager?action=login&username=admin&secret=[password]`
+
+AMI is exposed on standard port 5038
